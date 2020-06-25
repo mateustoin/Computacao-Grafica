@@ -28,9 +28,8 @@ void PutPixel(int x, int y, Color *color){
     fb_ptr[startPoint + 3] = color->alpha;
 }
 
-void DrawLine(int x0, int y0, int x1, int y1, Color *color1, Color *color2)
-{
-    // Se a reta tiver sido desenhada nos quadrantes 3, 4, 5 ou 6, troca os pontos para jogar no lado positivo do X
+void DrawLine(int x0, int y0, int x1, int y1, Color *color1, Color *color2){
+    // Se a reta tiver sido desenhada nos quadrantes do lado negativo da reta X, troca os pontos para jogar no lado positivo do X
     bool changeColor = false;
     if (x1 < x0){
         swap(&x0, &x1);
@@ -42,27 +41,27 @@ void DrawLine(int x0, int y0, int x1, int y1, Color *color1, Color *color2)
     int dx = x1 - x0;
     int dy = y1 - y0;
 
-    // Inicia variável para contar iterações para interpolação
+    // Inicia variável para contar iterações para interpolação e calcula distância dos pontos
     float passoIteracao = 0.0;
-
     float dist = sqrt((dx*dx)+(dy*dy));
 
     // Inicia variáveis de referência para interpolação
     Color colorRef;
 
+    // Se changeColor for true, significa que os pontos foram trocados, então começa interpolando pela segunda cor
     if (changeColor){
         colorRef.red = color2->red;
         colorRef.green = color2->green;
         colorRef.blue = color2->blue;
-    }else{
+    }else{ // Se não, interpola cada um com sua cor normal
         colorRef.red = color1->red;
         colorRef.green = color1->green;
         colorRef.blue = color1->blue;
     }
     
-    colorRef.alpha = 255;
+    colorRef.alpha = 255; // Alpha sempre em 255 para ter a maior visibilidade
 
-    if (dx == 0){ // Para desenhar linhas retas basta apenas um for
+    if (dx == 0){       // Para desenhar linhas retas basta apenas um for
         if (dy < 0)
             swap(&y0, &y1);
         
@@ -74,7 +73,7 @@ void DrawLine(int x0, int y0, int x1, int y1, Color *color1, Color *color2)
                 ApplyInterpolation(&colorRef, *color2, *color1, passoIteracao);
             PutPixel(x0, i, &colorRef);
         }
-    }else if (dy == 0){
+    }else if (dy == 0){ // Para desenhar linhas retas basta apenas um for
         if (dx < 0)
             swap(&x0, &x1);
         
@@ -107,7 +106,7 @@ void DrawLine(int x0, int y0, int x1, int y1, Color *color1, Color *color2)
             
             PutPixel(x, y, &colorRef);
 
-            if (desenhaContrario){ // Se o y for negativo e o desenho vai ser em relação a ele
+            if (desenhaContrario){ // Se o y for negativo e o desenho vai ser em relação a ele, loop compara até y ser igual a y1, seu ponto final
                 while (y > y1){
                     if (d <= 0){
                         d += incrE;
@@ -131,7 +130,7 @@ void DrawLine(int x0, int y0, int x1, int y1, Color *color1, Color *color2)
                         ApplyInterpolation(&colorRef, *color2, *color1, passoIteracao);
                     PutPixel(x, y, &colorRef);
                 }
-            }else{
+            }else{                  // Nesse caso o desenho é em relação a Y, mas ele não é negativo, então segue a mesma lógica do X com tudo trocado por Y
                 while (y <= y1){
                     if (d <= 0){
                         d += incrE;
