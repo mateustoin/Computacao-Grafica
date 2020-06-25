@@ -276,20 +276,22 @@ void MyGlDraw(void)
     /* 
      *  Testando todos os quadrantes
      */ 
-    DrawLine(0, 0, 511, 511, &ColorWhite, &ColorRed);
-    DrawLine(511, 0, 0, 511, &ColorWhite, &ColorGreen);
+    // DrawLine(0, 0, 511, 511, &ColorWhite, &ColorRed);
+    // DrawLine(511, 0, 0, 511, &ColorWhite, &ColorGreen);
     
-    DrawLine(256, 127, 256, 383, &ColorWhite, &ColorBlue);
-    DrawLine(127, 256, 383, 256, &ColorWhite, &ColorRandom);
+    // DrawLine(256, 127, 256, 383, &ColorWhite, &ColorBlue);
+    // DrawLine(127, 256, 383, 256, &ColorWhite, &ColorRandom);
     
-    DrawLine(383, 0, 127, 511, &ColorWhite, &ColorRed);
-    DrawLine(127, 0, 383, 511, &ColorWhite, &ColorBlue);
+    // DrawLine(383, 0, 127, 511, &ColorWhite, &ColorRed);
+    // DrawLine(127, 0, 383, 511, &ColorWhite, &ColorBlue);
 
 
     /*
      *  Desenhando triângulo
      */
-    //DrawTriangle(127, 255, &ColorWhite, 383, 255, &ColorRandom, 255, 0, &ColorRed);
+    DrawTriangle(127, 255, &ColorWhite, 383, 255, &ColorRandom, 255, 0, &ColorRed);
+    DrawTriangle(0, 255, &ColorRed, 127, 255, &ColorGreen, 127, 0, &ColorBlue);
+    DrawTriangle(383, 255, &ColorRandom, 511, 255, &ColorBlue, 383, 0, &ColorWhite);
     
     /*
      *  Desenhando quadrados coloridos

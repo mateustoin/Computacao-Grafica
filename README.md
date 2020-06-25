@@ -3,13 +3,35 @@
 Aqui são apresentados os resultados das atividades práticas da disciplina de <b>Introdução à Computação Gráfica</b>, ministrada no <i>Período Suplementar</i> na UFPB.
 
 # Sumário
-1. [Atividade 1 - Rasterização](#atividade1)
+1. [Configuração do Ambiente](#config)
+2. [Atividade 1 - Rasterização](#atividade1)
     - [Rasterização do Ponto](#rasteriza-ponto)
         - [Resultados](#resultados-ponto)
     - [Rasterização da Linha](#rasteriza-linha)
         - [Resultados](#resultados-linha)
         - [Problemas e Soluções](#prob-linha)
+    - [Rasterização do Triângulo](#rasteriza-triangulo)
+        - [Resultados](#resultados-triangulo)
+3. [Atividade 2 - OpenGL Moderno](#atividade2)
+    - [Resultados](#resultado-atv2)
 
+# Configuração do Ambiente <a id="config"></a>
+
+Para a realização das atividades a seguir, foi seguido um guia de instalação dos pacotes básicos que pode ser encontrado <a href="https://pt.wikibooks.org/wiki/Programa%C3%A7%C3%A3o_com_OpenGL/Instala%C3%A7%C3%A3o/Linux">neste link</a>. Os comandos básicos para realizar a instalação foram:
+
+```
+sudo apt-get update
+sudo apt-get install libgl1-mesa-dev
+sudo apt-get install build-essential
+sudo apt-get install libglew1.5-dev freeglut3-dev libglm-dev
+```
+
+Caso ocorra algum problema com os drivers ou versão, o link citado anteriormente fala sobre possíveis soluções. Para a execução dos códigos basta acessá-los nas pastas do repositório e executar:
+
+```
+make
+./nome-do-executável
+```
 
 # Atividade 1 - Rasterização <a id="atividade1"></a>
 
@@ -90,3 +112,27 @@ A implementação da rasterização da linha foi feita com a função `DrawLine(
 - X1 e Y1 contém a informação do vértice <i>(x1, y1)</i> do triangulo, junto com <i>RGBA1</i> contendo as informações da sua cor
 - X2 e Y2 contém a informação do vértice <i>(x2, y2)</i> do triangulo, junto com <i>RGBA2</i> contendo as informações da sua cor
 - X3 e Y3 contém a informação da coordenada <i>(x3, y3)</i> do triangulo, junto com <i>RGBA2</i> contendo as informações da sua cor
+
+### Resultados <a id="resultados-triangulo"></a>
+
+O triângulo é criado utilizando a função `DrawLine` mostrada anteriormente. Dado os 3 vértices do triângulo, a função cria as arestas e realiza a interpolação linear das cores. Um exemplo pode ser visto a seguir:
+
+<img src="1_rasterizacao/img/DrawTriangle.png" style="height:300px, ">
+
+
+
+
+
+
+
+
+# Atividade 2 - OpenGL Moderno (3.3) <a id="atividade2"></a>
+
+A familiarização e configuração do ambiente para rodar o OpenGL moderno, versão 3.3 especificamente, é essencial para a execução das próximas atividades. Portanto, esta atividade consiste na execução do <a href="https://github.com/capagot/icg/tree/master/hello_world_gl/modern_opengl">código oferecido pelo professor</a> para a validação do ambiente de desenvolvimento do aluno.
+
+
+## Resultados <a id="resultado-atv2"></a>
+
+Para a execução do código bastou apenas seguir a instalação dos pacotes mencionados na seção [Configuração do Ambiente](#config). O código executado gera a seguinte imagem:
+
+<img src="2_modern_opengl/img/hello_opengl.png" style="height:300px, ">
