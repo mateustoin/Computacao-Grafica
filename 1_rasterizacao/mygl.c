@@ -267,24 +267,29 @@ void MyGlDraw(void)
     /*
      *  Teste da função PutPixel
      */
-    //PutPixel(0, 0, ColorGreen);
+    PutPixel(0, 0, &ColorGreen);
+    PutPixel(2, 0, &ColorBlue);
+    PutPixel(4, 0, &ColorRed);
+    PutPixel(6, 0, &ColorWhite);
+    PutPixel(8, 0, &ColorRandom);
 
     /* 
      *  Testando todos os quadrantes
      */ 
-    // DrawLine(0, 0, 511, 511, &ColorRandom, &ColorRed);
-    // DrawLine(511, 0, 0, 511, &ColorGreen, &ColorRed);
+    // DrawLine(0, 0, 511, 511, &ColorWhite, &ColorRed);
+    // DrawLine(511, 0, 0, 511, &ColorWhite, &ColorGreen);
     
-    // DrawLine(256, 127, 256, 383, &ColorBlue, &ColorRed);
-    // DrawLine(127, 256, 383, 256, &ColorRed, &ColorGreen);
+    // DrawLine(256, 127, 256, 383, &ColorWhite, &ColorBlue);
+    // DrawLine(127, 256, 383, 256, &ColorWhite, &ColorRandom);
     
     // DrawLine(383, 0, 127, 511, &ColorWhite, &ColorRed);
-    // DrawLine(127, 0, 383, 511, &ColorWhite, &ColorRed);
+    // DrawLine(127, 0, 383, 511, &ColorWhite, &ColorBlue);
+
 
     /*
      *  Desenhando triângulo
      */
-    DrawTriangle(127, 255, &ColorBlue, 383, 255, &ColorGreen, 255, 0, &ColorRed);
+    //DrawTriangle(127, 255, &ColorWhite, 383, 255, &ColorRandom, 255, 0, &ColorRed);
     
     /*
      *  Desenhando quadrados coloridos
