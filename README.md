@@ -15,7 +15,7 @@ Aqui são apresentados os resultados das atividades práticas da disciplina de <
     - [Referências](#referencias1)
 3. [Atividade 2 - OpenGL Moderno](#atividade2)
     - [Resultados](#resultado-atv2)
-    - [ReferÊncias](#referencias2)
+    - [Referências](#referencias2)
 
 # Configuração do Ambiente <a id="config"></a>
 
@@ -128,7 +128,8 @@ O triângulo é criado utilizando a função `DrawLine` mostrada anteriormente. 
 - [Explicação sobre a interpolação linear de cores](https://letslearnbits.blogspot.com/2014/10/icgt1-interpolacao-de-cores.html)
 
 
-
+---
+---
 
 <img id="atividade2" src="images/2.png" style="height:300px, ">
 
@@ -148,3 +149,6 @@ Para a execução do código bastou apenas seguir a instalação dos pacotes men
 ## Referências <a id="referencias2"></a>
 
 - [Material oferecido pelo professor](2_modern_opengl/arquivos_relacionados)
+
+---
+---
