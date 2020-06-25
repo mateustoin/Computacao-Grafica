@@ -32,8 +32,10 @@ Caso ocorra algum problema com os drivers ou versão, o link citado anteriorment
 make
 ./nome-do-executável
 ```
-
+<img id="atividade1" src="images/1.png" style="height:300px, ">
+<!---
 # Atividade 1 - Rasterização <a id="atividade1"></a>
+-->
 
 Simulando o acesso a memória de vídeo do computador, através de um <a href="https://github.com/capagot/icg/tree/master/mygl_framework">framework</a> fornecido pelo professor,  foi feita a rasterização de pontos e linhas. A partir delas, também foi feita a rasterização de triângulos, com as arestas baseadas na rasterização das linhas feitas anteriormente. E com a criação de retas, também foi feita a interpolação linear das cores das duas pontas, para que haja uma transição entre as duas cores em sua extensão
 
@@ -124,9 +126,11 @@ O triângulo é criado utilizando a função `DrawLine` mostrada anteriormente. 
 
 
 
+<img id="atividade2" src="images/2.png" style="height:300px, ">
 
-
+<!--- 
 # Atividade 2 - OpenGL Moderno (3.3) <a id="atividade2"></a>
+-->
 
 A familiarização e configuração do ambiente para rodar o OpenGL moderno, versão 3.3 especificamente, é essencial para a execução das próximas atividades. Portanto, esta atividade consiste na execução do <a href="https://github.com/capagot/icg/tree/master/hello_world_gl/modern_opengl">código oferecido pelo professor</a> para a validação do ambiente de desenvolvimento do aluno.
 
