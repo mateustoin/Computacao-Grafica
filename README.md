@@ -1,4 +1,4 @@
-# Computação Gráfica
+<img src="1_rasterizacao/img/capa.png" style="height:300px, ">
 
 Aqui são apresentados os resultados das atividades práticas da disciplina de <b>Introdução à Computação Gráfica</b>, ministrada no <i>Período Suplementar</i> na UFPB.
 
