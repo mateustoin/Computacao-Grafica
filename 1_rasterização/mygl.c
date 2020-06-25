@@ -7,16 +7,20 @@ Color ColorGreen = {.red = 0, .green = 255, .blue = 0, .alpha = 255};
 Color ColorBlue = {.red = 0, .green = 0, .blue = 255, .alpha = 255};
 Color ColorRandom = {.red = 100, .green = 59, .blue = 156, .alpha = 255};
 
-void swap(int *x, int *y)
-{
+void swap(int *x, int *y){
     int temp;
     temp = *x;
     *x = *y;
     *y = temp;
 }
 
-void PutPixel(int x, int y, Color *color)
-{
+void ApplyInterpolation(Color *corAtual, Color cor1, Color cor2, float distancia){
+    corAtual->red = (cor2.red*distancia) + ((1-distancia)*cor1.red);
+    corAtual->green = (cor2.green*distancia) + ((1-distancia)*cor1.green);
+    corAtual->blue = (cor2.blue*distancia) + ((1-distancia)*cor1.blue);
+}
+
+void PutPixel(int x, int y, Color *color){
     const unsigned int startPoint = x * 4 + y * IMAGE_WIDTH * 4;
     fb_ptr[startPoint] = color->red;
     fb_ptr[startPoint + 1] = color->green;
@@ -24,35 +28,69 @@ void PutPixel(int x, int y, Color *color)
     fb_ptr[startPoint + 3] = color->alpha;
 }
 
-void DrawLine(int x0, int y0, int x1, int y1, Color *color)
+void DrawLine(int x0, int y0, int x1, int y1, Color *color1, Color *color2)
 {
     // Se a reta tiver sido desenhada nos quadrantes 3, 4, 5 ou 6, troca os pontos para jogar no lado positivo do X
+    bool changeColor = false;
     if (x1 < x0){
         swap(&x0, &x1);
         swap(&y0, &y1);
+        changeColor = true;
     }
 
     // Calcula DeltaY e DeltaX
     int dx = x1 - x0;
     int dy = y1 - y0;
 
+    // Inicia variável para contar iterações para interpolação
+    float passoIteracao = 0.0;
+
+    float dist = sqrt((dx*dx)+(dy*dy));
+
+    // Inicia variáveis de referência para interpolação
+    Color colorRef;
+
+    if (changeColor){
+        colorRef.red = color2->red;
+        colorRef.green = color2->green;
+        colorRef.blue = color2->blue;
+    }else{
+        colorRef.red = color1->red;
+        colorRef.green = color1->green;
+        colorRef.blue = color1->blue;
+    }
+    
+    colorRef.alpha = 255;
 
     if (dx == 0){ // Para desenhar linhas retas basta apenas um for
         if (dy < 0)
             swap(&y0, &y1);
+        
         for (int i = y0; i < y1; i++){
-            PutPixel(x0, i, color);
+            passoIteracao += 1/dist;
+            if (!changeColor)
+                ApplyInterpolation(&colorRef, *color1, *color2, passoIteracao);
+            else
+                ApplyInterpolation(&colorRef, *color2, *color1, passoIteracao);
+            PutPixel(x0, i, &colorRef);
         }
     }else if (dy == 0){
         if (dx < 0)
             swap(&x0, &x1);
+        
         for (int i = x0; i < x1; i++){
-            PutPixel(i, y0, color);
+            passoIteracao += 1/dist;
+            if (!changeColor)
+                ApplyInterpolation(&colorRef, *color1, *color2, passoIteracao);
+            else
+                ApplyInterpolation(&colorRef, *color2, *color1, passoIteracao);
+            PutPixel(i, y0, &colorRef);
         }
     }else{
 
         if (MODULO(dy) > MODULO(dx)){ // Faz todo o desenho em relação a Y em vez de X
             bool desenhaContrario = false;
+            passoIteracao += 1/dist;
 
             if (dy < 0){
                 dy *= -1;
@@ -67,7 +105,7 @@ void DrawLine(int x0, int y0, int x1, int y1, Color *color)
             int x = x0;
             int y = y0;
             
-            PutPixel(x, y, color);
+            PutPixel(x, y, &colorRef);
 
             if (desenhaContrario){ // Se o y for negativo e o desenho vai ser em relação a ele
                 while (y > y1){
@@ -86,7 +124,12 @@ void DrawLine(int x0, int y0, int x1, int y1, Color *color)
                             y++;
                         x++;
                     }
-                    PutPixel(x, y, color);
+                    passoIteracao += 1/dist;
+                    if (!changeColor)
+                        ApplyInterpolation(&colorRef, *color1, *color2, passoIteracao);
+                    else
+                        ApplyInterpolation(&colorRef, *color2, *color1, passoIteracao);
+                    PutPixel(x, y, &colorRef);
                 }
             }else{
                 while (y <= y1){
@@ -105,13 +148,19 @@ void DrawLine(int x0, int y0, int x1, int y1, Color *color)
                             y++;
                         x++;
                     }
-                    PutPixel(x, y, color);
+                    passoIteracao += 1/dist;
+                    if (!changeColor)
+                        ApplyInterpolation(&colorRef, *color1, *color2, passoIteracao);
+                    else
+                        ApplyInterpolation(&colorRef, *color2, *color1, passoIteracao);
+                    PutPixel(x, y, &colorRef);
                 }
             }
 
         }
         else{ // Faz tudo em relação a X, do jeito normal!
             bool desenhaContrario = false;
+            passoIteracao = 1/dist;
 
             if (dy < 0){
                 dy *= -1;
@@ -125,7 +174,7 @@ void DrawLine(int x0, int y0, int x1, int y1, Color *color)
             int x = x0;
             int y = y0;
 
-            PutPixel(x, y, color);
+            PutPixel(x, y, &colorRef);
 
             while (x <= x1){
                 if (d <= 0){
@@ -140,14 +189,21 @@ void DrawLine(int x0, int y0, int x1, int y1, Color *color)
                     else
                         y++;
                 }
-                PutPixel(x, y, color);
+                passoIteracao += 1/dist;
+                if (!changeColor)
+                    ApplyInterpolation(&colorRef, *color1, *color2, passoIteracao);
+                else
+                    ApplyInterpolation(&colorRef, *color2, *color1, passoIteracao);
+                PutPixel(x, y, &colorRef);
             }
         }
     }
 }
 
-void DrawTriangle(void)
-{
+void DrawTriangle(int x1, int y1, Color *cor1, int x2, int y2, Color *cor2, int x3, int y3, Color *cor3){
+    DrawLine(x1, y1, x2, y2, cor1, cor2);
+    DrawLine(x2, y2, x3, y3, cor2, cor3);
+    DrawLine(x3, y3, x1, y1, cor3, cor1);
 }
 
 void DrawSquare1(Color *color)
@@ -208,21 +264,31 @@ void DrawSquareCenter(Color *color)
 // Definição da função que chamará as funções implementadas pelo aluno
 void MyGlDraw(void)
 {
-    //
-    // >>> Chame aqui as funções que você implementou <<<
-    //
+    /*
+     *  Teste da função PutPixel
+     */
     //PutPixel(0, 0, ColorGreen);
 
-    DrawLine(0, 0, 511, 511, &ColorRandom);
-    DrawLine(511, 0, 0, 511, &ColorGreen);
+    /* 
+     *  Testando todos os quadrantes
+     */ 
+    // DrawLine(0, 0, 511, 511, &ColorRandom, &ColorRed);
+    // DrawLine(511, 0, 0, 511, &ColorGreen, &ColorRed);
     
-    DrawLine(256, 127, 256, 383, &ColorBlue);
-    DrawLine(127, 256, 383, 256, &ColorRed);
+    // DrawLine(256, 127, 256, 383, &ColorBlue, &ColorRed);
+    // DrawLine(127, 256, 383, 256, &ColorRed, &ColorGreen);
     
-    DrawLine(383, 0, 127, 511, &ColorWhite);
-    DrawLine(127, 0, 383, 511, &ColorWhite);
-    
+    // DrawLine(383, 0, 127, 511, &ColorWhite, &ColorRed);
+    // DrawLine(127, 0, 383, 511, &ColorWhite, &ColorRed);
 
+    /*
+     *  Desenhando triângulo
+     */
+    DrawTriangle(127, 255, &ColorBlue, 383, 255, &ColorGreen, 255, 0, &ColorRed);
+    
+    /*
+     *  Desenhando quadrados coloridos
+     */
     // DrawSquare1(&ColorRandom);
     // DrawSquare2(&ColorGreen);
     // DrawSquare3(&ColorBlue);

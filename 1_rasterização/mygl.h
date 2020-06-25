@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <math.h>
 #include "core.h"
 #include "frame_buffer.h"
 
@@ -24,8 +25,8 @@ void MyGlDraw(void);
 // >>> Declare aqui as funções que você implementar <<<
 //
 void PutPixel(int x, int y, Color *);
-void DrawLine(int, int, int, int, Color *);
-void DrawTriangle(void);
+void DrawLine(int, int, int, int, Color *, Color *);
+void DrawTriangle(int, int, Color *, int, int, Color *, int, int, Color *);
 
 void DrawSquare1(Color *);
 void DrawSquare2(Color *);
