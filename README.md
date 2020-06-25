@@ -34,6 +34,10 @@ Caso ocorra algum problema com os drivers ou versão, o link citado anteriorment
 make
 ./nome-do-executável
 ```
+
+---
+---
+
 <img id="atividade1" src="images/1.png" style="height:300px, ">
 <!---
 # Atividade 1 - Rasterização <a id="atividade1"></a>
