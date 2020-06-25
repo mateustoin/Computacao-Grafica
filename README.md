@@ -5,7 +5,7 @@ Aqui são apresentados os resultados das atividades práticas da disciplina de <
 # Sumário
 1. [Rasterização](#atividade1)
     
-    - [Link para pasta do código]("/1_rasterizacao") 
+    - [Link para pasta do código]("1_rasterizacao") 
 
 
 # Atividade 1 - Rasterização <a id="atividade1"></a>
