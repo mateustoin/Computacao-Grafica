@@ -62,12 +62,16 @@ void DrawLine(int x0, int y0, int x1, int y1, Color *color1, Color *color2){
     colorRef.alpha = 255; // Alpha sempre em 255 para ter a maior visibilidade
 
     if (dx == 0){       // Para desenhar linhas retas basta apenas um for
-        if (dy < 0)
+        bool inverte = false;
+        if (dy < 0){
             swap(&y0, &y1);
+            inverte = true;
+        }
+            
         
         for (int i = y0; i < y1; i++){
             passoIteracao += 1/dist;
-            if (!changeColor)
+            if (!changeColor && !inverte)
                 ApplyInterpolation(&colorRef, *color1, *color2, passoIteracao);
             else
                 ApplyInterpolation(&colorRef, *color2, *color1, passoIteracao);
