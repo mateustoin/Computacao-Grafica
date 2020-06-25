@@ -12,8 +12,10 @@ Aqui são apresentados os resultados das atividades práticas da disciplina de <
         - [Problemas e Soluções](#prob-linha)
     - [Rasterização do Triângulo](#rasteriza-triangulo)
         - [Resultados](#resultados-triangulo)
+    - [Referências](#referencias1)
 3. [Atividade 2 - OpenGL Moderno](#atividade2)
     - [Resultados](#resultado-atv2)
+    - [ReferÊncias](#referencias2)
 
 # Configuração do Ambiente <a id="config"></a>
 
@@ -121,7 +123,9 @@ O triângulo é criado utilizando a função `DrawLine` mostrada anteriormente. 
 
 <img src="1_rasterizacao/img/DrawTriangle.png" style="height:300px, ">
 
-
+## Referências <a id="referencias1"></a>
+- [Material oferecido pelo professor](1_rasterizacao/arquivos_relacionados)
+- [Explicação sobre a interpolação linear de cores](https://letslearnbits.blogspot.com/2014/10/icgt1-interpolacao-de-cores.html)
 
 
 
@@ -140,3 +144,7 @@ A familiarização e configuração do ambiente para rodar o OpenGL moderno, ver
 Para a execução do código bastou apenas seguir a instalação dos pacotes mencionados na seção [Configuração do Ambiente](#config). O código executado gera a seguinte imagem:
 
 <img src="2_modern_opengl/img/hello_opengl.png" style="height:300px, ">
+
+## Referências <a id="referencias2"></a>
+
+- [Material oferecido pelo professor](2_modern_opengl/arquivos_relacionados)
