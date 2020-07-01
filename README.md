@@ -146,9 +146,9 @@ A familiarização e configuração do ambiente para rodar o OpenGL moderno, ver
 
 ## Resultados <a id="resultado-atv2"></a>
 
-Para a execução do código bastou apenas seguir a instalação dos pacotes mencionados na seção [Configuração do Ambiente](#config). O código executado gera a seguinte imagem:
+Para a execução do código bastou apenas seguir a instalação dos pacotes mencionados na seção [Configuração do Ambiente](#config). O código executado gera a imagem mostrada no gif de execução:
 
-<img src="2_modern_opengl/img/hello_opengl.png" style="height:300px, ">
+<img src="2_modern_opengl/img/resultado_execucao.gif" style="height:300px, ">
 
 ## Referências <a id="referencias2"></a>
 
