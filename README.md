@@ -16,6 +16,9 @@ Aqui são apresentados os resultados das atividades práticas da disciplina de <
 3. [Atividade 2 - OpenGL Moderno](#atividade2)
     - [Resultados](#resultado-atv2)
     - [Referências](#referencias2)
+4. [Atividade 3 - Implementação do Pipeline Gráfico](#atividade3)
+    - [Resultados](#resultado-atv3)
+    - [Referências](#referencias3)
 
 # Configuração do Ambiente <a id="config"></a>
 
@@ -156,3 +159,150 @@ Para a execução do código bastou apenas seguir a instalação dos pacotes men
 
 ---
 ---
+
+<img id="atividade3" src="images/3.png" style="height:300px, ">
+
+## Resultados <a id="resultado-atv3"></a>
+
+Os resultados a seguir são frutos das instruções presentes no documento do trabalho 3, a fim de se obter os resultados esperados, descritos no próprio documento.
+
+### Exercício 1: Escala
+
+Para a modificação da escala foram utilizados os seguintes valores:
+
+`(x, y, z) = (1/3, 3/2, 1)`
+
+A Matriz Model resultante pode ser vista a seguir e a figura resultante logo após.
+
+```cpp
+float model_array[16] = { 0.33f, 0.0f, 0.0f, 0.0f, 
+                          0.0f, 1.5f, 0.0f, 0.0f, 
+                          0.0f, 0.0f, 1.0f, 0.0f, 
+                          0.0f, 0.0f, 0.0f, 1.0f};
+
+glm::mat4 model_mat = glm::make_mat4(model_array);
+```
+
+<img src="3_transformations/img/pt1.png" style="height:300px, ">
+
+### Exercício 2: Translação
+
+Para a modificação da translação foram utilizados os seguintes valores:
+
+`(x, y, z) = (1, 0, 0)`
+
+A Matriz Model resultante pode ser vista a seguir e a figura resultante logo após.
+
+```cpp
+float model_array[16] = { 1.0f, 0.0f, 0.0f, 0.0f, 
+                          0.0f, 1.0f, 0.0f, 0.0f, 
+                          0.0f, 0.0f, 1.0f, 0.0f, 
+                          1.0f, 0.0f, 0.0f, 1.0f};
+
+glm::mat4 model_mat = glm::make_mat4(model_array);
+```
+
+<img src="3_transformations/img/pt2.png" style="height:300px, ">
+
+Para a modificação da translação foram utilizados os seguintes valores:
+
+`(x, y, z) = (1, 0, 0)`
+
+A Matriz Model resultante pode ser vista a seguir e a figura resultante logo após.
+
+```cpp
+float model_array[16] = { 1.0f, 0.0f, 0.0f, 0.0f, 
+                          0.0f, 1.0f, 0.0f, 0.0f, 
+                          0.0f, 0.0f, 1.0f, 0.0f, 
+                          1.0f, 0.0f, 0.0f, 1.0f};
+
+glm::mat4 model_mat = glm::make_mat4(model_array);
+```
+
+### Exercício 3: Projeção Perspectiva
+
+Para a modificação da Projeção foi utilizado o seguinte valor de d (fator de projeção), mantando a distorção perspectiva anterior:
+
+`d = 0.5`
+
+A Matriz de Projeção resultante pode ser vista a seguir e a figura resultante logo após.
+
+```cpp
+float proj_array[16] = { 1.0f, 0.0f, 0.0f, 0.0f, 
+                         0.0f, 1.0f, 0.0f, 0.0f, 
+                         0.0f, 0.0f, 1.0f, -2.0f, 
+                         0.0f, 0.0f, 0.5f, 1.0f};
+
+glm::mat4 proj_mat = glm::make_mat4(proj_array);
+```
+
+<img src="3_transformations/img/pt3.png" style="height:300px, ">
+
+### Exercício 4: Posição da Câmera
+
+Nesse caso é preciso fazer uma transformação do espaço do Universo para o espaço da Câmera, como indica a figura a seguir. Para isso, um sistema de coordenadas X, Y e Z da própria câmera precisa ser criado, para que a referência visual possa ser vista a partir dela, sem modificar a cena. 
+
+Levando em consideração as mudanças realizadas nas transformações anteriores, seguindo o passo a passo visto durante as aulas, os seguintes dados da câmera foram utilizados para os cálculos dos vetores de base da câmera e matrizes.
+
+```
+Posição da Câmera = (-1/10, 1/10, 1/4)
+Vetor Up da câmera = (0, 1, 0)
+Ponto que a câmera aponta = (0, 0, 0)
+```
+
+Com isso, o código a seguir foi utilizado para gerar o resultado exibido na imagem após.
+
+```cpp
+float camera_position[3]  = {-0.1f, 0.1f, 0.25f},
+      camera_up[3]   = {0.0f, 1.0f, 0.0f},
+      camera_pointer[3] = {0.0f, 0.0f, 0.0f};
+
+glm::vec3 cam_position  = glm::make_vec3(camera_position);
+glm::vec3 cam_up   = glm::make_vec3(camera_up);
+glm::vec3 cam_pointer = glm::make_vec3(camera_pointer);
+
+glm::vec3 cam_Z = glm::make_vec3(glm::normalize(cam_position - cam_pointer));
+glm::vec3 cam_X = glm::make_vec3(glm::normalize(glm::cross(cam_up, cam_Z)));
+glm::vec3 cam_Y = glm::make_vec3(glm::cross(cam_Z, cam_X));
+
+glm::mat4 B = glm::mat4 ( glm::vec4(cam_X.x, cam_Y.x, cam_Z.x, 0.0f),
+                            glm::vec4(cam_X.y, cam_Y.y, cam_Z.y, 0.0f),
+                            glm::vec4(cam_X.z, cam_Y.z, cam_Z.z, 0.0f),
+                            glm::vec4(0.0f,   0.0f,   0.0f, 1.0f));
+
+glm::mat4 T = glm::mat4 ( glm::vec4(1.0f, 0.0f, 0.0f, 0.0f),
+                        glm::vec4( 0.0f, 1.0f, 0.0f, 0.0f),
+                        glm::vec4(0.0f, 0.0f, 1.0f, 0.0f),
+                        glm::vec4(-cam_position.x, -cam_position.y, -cam_position.z, 1.0f));
+
+glm::mat4 view_mat = B * T;
+```
+
+<!--
+<img src="3_transformations/img/universo_cam.png" style="height:300px, ">
+-->
+
+<img src="3_transformations/img/pt4.png" style="height:300px, ">
+
+### Exercício 5: Transformações Livres
+
+Na transformação livre as modificações devem ser feitas nas Matrizes de Model, View e Projection. Para a matriz de projetão, foi utilizado um `d = 1`. As cores dos triangulos foram modificadas e o triângulo verde foi mais afastado do branco. A posição da câmera foi modificada para que a visão fosse vista pela direita e não pela esquerda, como nos exercícios anteriores. O valor da posição pode ser visto a seguir:
+
+`float camera_position[3]  = {0.25f, 0.25f, 0.25f}`
+
+Por fim, a matriz model pode ser vista a seguir, gerando a imagem resultante logo após.
+
+```cpp
+float model_array[16] = {0.25f, 0.0f, 0.0f, 0.0f, 
+                            0.0f, 0.66f, 0.0f, 0.0f, 
+                            0.0f, 0.0f, 1.0f, 0.0f, 
+                            0.0f, 0.0f, 0.0f, 1.0f};
+```
+
+<img src="3_transformations/img/pt5.png" style="height:300px, ">
+
+## Referências <a id="referencias2"></a>
+
+- [Material oferecido pelo professor](3_transformations/arquivos_relacionados)
+- Slides da aula
+- Documentação glm
