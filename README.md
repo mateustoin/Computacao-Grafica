@@ -3,23 +3,28 @@
 Aqui são apresentados os resultados das atividades práticas da disciplina de <b>Introdução à Computação Gráfica</b>, ministrada no <i>Período Suplementar</i> na UFPB.
 
 # Sumário
-1. [Configuração do Ambiente](#config)
-2. [Atividade 1 - Rasterização](#atividade1)
-    - [Rasterização do Ponto](#rasteriza-ponto)
-        - [Resultados](#resultados-ponto)
-    - [Rasterização da Linha](#rasteriza-linha)
-        - [Resultados](#resultados-linha)
-        - [Problemas e Soluções](#prob-linha)
-    - [Rasterização do Triângulo](#rasteriza-triangulo)
-        - [Resultados](#resultados-triangulo)
-    - [Referências](#referencias1)
-3. [Atividade 2 - OpenGL Moderno](#atividade2)
-    - [Resultados](#resultado-atv2)
-    - [Referências](#referencias2)
-4. [Atividade 3 - Implementação do Pipeline Gráfico](#atividade3)
-    - [Resultados](#resultado-atv3)
-    - [Referências](#referencias3)
-
+- [Sumário](#sumário)
+- [Configuração do Ambiente <a id="config"></a>](#configuração-do-ambiente-)
+  - [Rasterização do ponto <a id="rasteriza-ponto"></a>](#rasterização-do-ponto-)
+    - [Resultados <a id="resultados-ponto"></a>](#resultados-)
+  - [Rasterização da linha <a id="rasteriza-linha"></a>](#rasterização-da-linha-)
+    - [<b>Resultados</b> <a id="resultados-linha"></a>](#bresultadosb-)
+    - [<b>Problemas e Soluções</b> <a id="prob-linha"></a>](#bproblemas-e-soluçõesb-)
+  - [Rasterização do Triângulo <a id="rasteriza-triangulo"></a>](#rasterização-do-triângulo-)
+    - [Resultados <a id="resultados-triangulo"></a>](#resultados--1)
+  - [Referências <a id="referencias1"></a>](#referências-)
+  - [Resultados <a id="resultado-atv2"></a>](#resultados--2)
+  - [Referências <a id="referencias2"></a>](#referências--1)
+  - [Resultados <a id="resultado-atv3"></a>](#resultados--3)
+    - [Exercício 1: Escala](#exercício-1-escala)
+    - [Exercício 2: Translação](#exercício-2-translação)
+    - [Exercício 3: Projeção Perspectiva](#exercício-3-projeção-perspectiva)
+    - [Exercício 4: Posição da Câmera](#exercício-4-posição-da-câmera)
+    - [Exercício 5: Transformações Livres](#exercício-5-transformações-livres)
+  - [Referências <a id="referencias2"></a>](#referências--2)
+  - [Resultados <a id="resultado-atv2"></a>](#resultados--4)
+    - [Exercício 1: Implementação do Modelo de Reflexão Difuso](#exercício-1-implementação-do-modelo-de-reflexão-difuso)
+  - [Referências <a id="referencias2"></a>](#referências--3)
 # Configuração do Ambiente <a id="config"></a>
 
 Para a realização das atividades a seguir, foi seguido um guia de instalação dos pacotes básicos que pode ser encontrado <a href="https://pt.wikibooks.org/wiki/Programa%C3%A7%C3%A3o_com_OpenGL/Instala%C3%A7%C3%A3o/Linux">neste link</a>. Os comandos básicos para realizar a instalação foram:
@@ -306,3 +311,32 @@ float model_array[16] = {0.25f, 0.0f, 0.0f, 0.0f,
 - [Material oferecido pelo professor](3_transformations/arquivos_relacionados)
 - Slides da aula
 - Documentação glm
+
+---
+---
+
+<img id="atividade4" src="images/4.png" style="height:300px, ">
+
+<!--- 
+# Atividade 2 - OpenGL Moderno (3.3) <a id="atividade2"></a>
+-->
+
+O principal objetivo desta atividade é familiarizar os alunos com os mdoelos de iluminação que são comumente utilizados na rasterização. Estes modelos podem ser classificados entre ambiente, difuso e especular. Todos devem ser feitos utilizando o <i>vertex shader</i> do OpengGL.
+
+
+## Resultados <a id="resultado-atv2"></a>
+
+Para a execução do código bastou apenas seguir a instalação dos pacotes mencionados na seção [Configuração do Ambiente](#config) e adicionar a biblioteca <i>glm</i>. O código executado sem modificações gera a imagem mostrada a seguir:
+
+<img src="4_shading/img/sem_modf.png" style="height:300px, ">
+
+### Exercício 1: Implementação do Modelo de Reflexão Difuso
+
+
+
+## Referências <a id="referencias2"></a>
+
+- [Material oferecido pelo professor](4_shading/arquivos_relacionados)
+
+---
+---

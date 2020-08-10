@@ -9,8 +9,8 @@
 
 #include <iostream>
 
-#include "../../glm/glm/gtc/type_ptr.hpp"
-#include "../../glm/glm/mat4x4.hpp"
+#include "../third_party/glm/glm/gtc/type_ptr.hpp"
+#include "../third_partyglm/glm/mat4x4.hpp"
 
 // The debug function/macro below were extracted from:
 //     https://stackoverflow.com/a/11258474/6107321

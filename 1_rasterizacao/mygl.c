@@ -193,6 +193,7 @@ void DrawLine(int x0, int y0, int x1, int y1, Color *color1, Color *color2){
                         y++;
                 }
                 passoIteracao += 1/dist;
+
                 if (!changeColor)
                     ApplyInterpolation(&colorRef, *color1, *color2, passoIteracao);
                 else
@@ -209,8 +210,7 @@ void DrawTriangle(int x1, int y1, Color *cor1, int x2, int y2, Color *cor2, int 
     DrawLine(x3, y3, x1, y1, cor3, cor1);
 }
 
-void DrawSquare1(Color *color)
-{
+void DrawSquare1(Color *color){
     for (int i = 0; i < 256; i++)
     {
         for (int j = 0; j < 256; j++)
@@ -220,8 +220,7 @@ void DrawSquare1(Color *color)
     }
 }
 
-void DrawSquare2(Color *color)
-{
+void DrawSquare2(Color *color){
     for (int i = 256; i < 511; i++)
     {
         for (int j = 0; j < 256; j++)
@@ -231,8 +230,7 @@ void DrawSquare2(Color *color)
     }
 }
 
-void DrawSquare3(Color *color)
-{
+void DrawSquare3(Color *color){
     for (int i = 0; i < 256; i++)
     {
         for (int j = 256; j < 511; j++)
@@ -242,8 +240,7 @@ void DrawSquare3(Color *color)
     }
 }
 
-void DrawSquare4(Color *color)
-{
+void DrawSquare4(Color *color){
     for (int i = 256; i < 511; i++)
     {
         for (int j = 256; j < 511; j++)
@@ -253,8 +250,7 @@ void DrawSquare4(Color *color)
     }
 }
 
-void DrawSquareCenter(Color *color)
-{
+void DrawSquareCenter(Color *color){
     for (int i = 215; i < 296; i++)
     {
         for (int j = 215; j < 296; j++)
@@ -265,8 +261,7 @@ void DrawSquareCenter(Color *color)
 }
 
 // Definição da função que chamará as funções implementadas pelo aluno
-void MyGlDraw(void)
-{
+void MyGlDraw(void){
     /*
      *  Teste da função PutPixel
      */
@@ -277,9 +272,9 @@ void MyGlDraw(void)
     // PutPixel(8, 0, &ColorRandom);
 
     /* 
-     *  Testando todos os quadrantes
+     *  Testando todos os quadrantes com função DrawLine
      */ 
-    // DrawLine(0, 0, 511, 511, &ColorWhite, &ColorRed);
+    // DrawLine(0, 0, 5, 3, &ColorWhite, &ColorRed);
     // DrawLine(511, 0, 0, 511, &ColorWhite, &ColorGreen);
     
     // DrawLine(256, 127, 256, 383, &ColorWhite, &ColorBlue);
