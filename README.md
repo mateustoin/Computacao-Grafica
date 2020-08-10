@@ -2,29 +2,8 @@
 
 Aqui são apresentados os resultados das atividades práticas da disciplina de <b>Introdução à Computação Gráfica</b>, ministrada no <i>Período Suplementar</i> na UFPB.
 
-# Sumário
-- [Sumário](#sumário)
-- [Configuração do Ambiente <a id="config"></a>](#configuração-do-ambiente-)
-  - [Rasterização do ponto <a id="rasteriza-ponto"></a>](#rasterização-do-ponto-)
-    - [Resultados <a id="resultados-ponto"></a>](#resultados-)
-  - [Rasterização da linha <a id="rasteriza-linha"></a>](#rasterização-da-linha-)
-    - [<b>Resultados</b> <a id="resultados-linha"></a>](#bresultadosb-)
-    - [<b>Problemas e Soluções</b> <a id="prob-linha"></a>](#bproblemas-e-soluçõesb-)
-  - [Rasterização do Triângulo <a id="rasteriza-triangulo"></a>](#rasterização-do-triângulo-)
-    - [Resultados <a id="resultados-triangulo"></a>](#resultados--1)
-  - [Referências <a id="referencias1"></a>](#referências-)
-  - [Resultados <a id="resultado-atv2"></a>](#resultados--2)
-  - [Referências <a id="referencias2"></a>](#referências--1)
-  - [Resultados <a id="resultado-atv3"></a>](#resultados--3)
-    - [Exercício 1: Escala](#exercício-1-escala)
-    - [Exercício 2: Translação](#exercício-2-translação)
-    - [Exercício 3: Projeção Perspectiva](#exercício-3-projeção-perspectiva)
-    - [Exercício 4: Posição da Câmera](#exercício-4-posição-da-câmera)
-    - [Exercício 5: Transformações Livres](#exercício-5-transformações-livres)
-  - [Referências <a id="referencias2"></a>](#referências--2)
-  - [Resultados <a id="resultado-atv2"></a>](#resultados--4)
-    - [Exercício 1: Implementação do Modelo de Reflexão Difuso](#exercício-1-implementação-do-modelo-de-reflexão-difuso)
-  - [Referências <a id="referencias2"></a>](#referências--3)
+
+
 # Configuração do Ambiente <a id="config"></a>
 
 Para a realização das atividades a seguir, foi seguido um guia de instalação dos pacotes básicos que pode ser encontrado <a href="https://pt.wikibooks.org/wiki/Programa%C3%A7%C3%A3o_com_OpenGL/Instala%C3%A7%C3%A3o/Linux">neste link</a>. Os comandos básicos para realizar a instalação foram:
