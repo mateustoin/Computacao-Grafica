@@ -2,7 +2,26 @@
 
 Aqui são apresentados os resultados das atividades práticas da disciplina de <b>Introdução à Computação Gráfica</b>, ministrada no <i>Período Suplementar</i> na UFPB.
 
-
+# Sumário
+1. [Configuração do Ambiente](#config)
+2. [Atividade 1 - Rasterização](#atividade1)
+    - [Rasterização do Ponto](#rasteriza-ponto)
+        - [Resultados](#resultados-ponto)
+    - [Rasterização da Linha](#rasteriza-linha)
+        - [Resultados](#resultados-linha)
+        - [Problemas e Soluções](#prob-linha)
+    - [Rasterização do Triângulo](#rasteriza-triangulo)
+        - [Resultados](#resultados-triangulo)
+    - [Referências](#referencias1)
+3. [Atividade 2 - OpenGL Moderno](#atividade2)
+    - [Resultados](#resultado-atv2)
+    - [Referências](#referencias2)
+4. [Atividade 3 - Implementação do Pipeline Gráfico](#atividade3)
+    - [Resultados](#resultado-atv3)
+    - [Referências](#referencias3)
+5. [Atividade 4 - Implementação de Modelos de Iluminação](#atividade4)
+    - [Resultados](#resultado-atv4)
+    - [Referências](#referencias4)
 
 # Configuração do Ambiente <a id="config"></a>
 
@@ -311,7 +330,37 @@ Para a execução do código bastou apenas seguir a instalação dos pacotes men
 
 ### Exercício 1: Implementação do Modelo de Reflexão Difuso
 
+A implementação deste modelo consiste em adicionar o modelo de iluminação difuso, além do ambiente, mostrado na imagem anterior. As instruções fornecidas no material de apoio desta atividade foram bem claras em relação ao cálculo do vetor normal N e vetor L, que aponta do vértice para o ponto da fonte de luz. Os códigos utilizados no `vertex_shader` para realizar as operações podem ser vistos a seguir:
 
+```c
+vec3 L = normalize(I_p_pos - (model_mat * vec4(obj_spc_vertex_pos, 1.0)).xyz);
+vec3 N = normalize(mat3(transpose(inverse(model_mat))) * obj_spc_N);
+```
+
+Após o cálculo dos vetores, resta apenas calcular o modelo de iluminação difuso (note que para o cálculo do produto interno foi utilizada a função <i>dot</i>):
+
+`I = I_a * k_a + I_p * k_d * max(dot(L, N), 0.0f);`
+
+Com isso, foi possível obter o seguinte resultado:
+
+<img src="4_shading/img/difuso.png" style="height:300px, ">
+
+### Exercício 2: Implementação do Modelo de Reflexão Especular
+
+Agora deve incluir não só o modelo de iluminação ambiente e difuso, mas também o modelo especular. As modificações realizadas no `vertex_shader` também foram as indicadas no documento, para o cálculo do vetor de reflexão R e o vetor da câmera V. As adições em relação aos cálculos anteriores foram:
+
+```c
+vec3 R = -reflect (L, N);
+vec3 V = normalize(cam_pos - (model_mat * vec4(obj_spc_vertex_pos, 1.0)).xyz);
+```
+
+Após o cálculo dos vetores, resta apenas calcular o modelo de iluminação de reflexão especular, com o valor de <i>n = 64</i>, com o valor sendo colocado direto no código:
+
+`I = I_a * k_a + I_p * (k_d * max(dot(L, N), 0.0f) + k_s * pow(max(dot(R, V), 0.0f), n));`
+
+Com isso, foi possível obter o seguinte resultado:
+
+<img src="4_shading/img/especular.png" style="height:300px, ">
 
 ## Referências <a id="referencias2"></a>
 
