@@ -1,2 +1,4 @@
 1_rasterizacao/*.c linguist-language=C
 1_rasterizacao/*.h linguist-language=C
+/*.c linguist-language=C
+/*.h linguist-language=C
