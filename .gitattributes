@@ -1,4 +1,8 @@
 1_rasterizacao/*.c linguist-language=C
 1_rasterizacao/*.h linguist-language=C
-/*.c linguist-language=C
-/*.h linguist-language=C
+2_modern_opengl/*.c linguist-language=C
+2_modern_opengl/*.h linguist-language=C
+3_transformations/*.c linguist-language=C
+3_transformations/*.h linguist-language=C
+4_shading/*.c linguist-language=C
+4_shading/*.h linguist-language=C
