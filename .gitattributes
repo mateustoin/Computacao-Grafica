@@ -6,3 +6,5 @@
 3_transformations/*.h linguist-language=C
 4_shading/*.c linguist-language=C
 4_shading/*.h linguist-language=C
+third_party/*.h linguist-language=C
+third_party/*.c linguist-language=C
